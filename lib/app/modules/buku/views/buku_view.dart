@@ -11,21 +11,37 @@ class BukuView extends GetView<BukuController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BukuView'),
+        backgroundColor: Color(0xFF080ba1),
+        title: const Text('Halaman Buku',
+        style: TextStyle(
+          fontFamily: 'Montserrat',
+          fontSize: 15.0,
+          letterSpacing: -0.5,
+          fontWeight: FontWeight.w700
+        ),
+        ),
         centerTitle: true,
       ),
 
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFF080ba1),
         onPressed: () => Get.toNamed(Routes.ADD_BOOK),
         child: Icon(Icons.add),
       ),
 
-      body: const Center(
-        child: Text(
-          'BukuView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: controller.obx((state) => ListView.separated(
+        itemCount: state!.length,
+        itemBuilder: (context, index){
+          return ListTile(
+            title: Text("${state[index].judul}"),
+            subtitle: Text("Ditulis by ${state[index].penulis}"),
+          );
+        },
+        separatorBuilder: (context, index){
+          return Divider();
+        },
+      )),
+
     );
   }
 }

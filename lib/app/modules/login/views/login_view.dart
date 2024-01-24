@@ -207,7 +207,7 @@ class LoginView extends GetView<LoginController> {
                       onTap: (){
                         Get.toNamed(Routes.REGISTER);
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign Up',
                         style: TextStyle(
                           fontSize: 16.0,
